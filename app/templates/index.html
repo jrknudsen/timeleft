@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body {
+    background-color: #F2F2F2
+}
+
+.site-footer {}
+
+#footer-content {
+  color: #DA291C;
+  
+}
+
+#header-content {
+    color: #DA291C;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+img.logo {
+    margin-left:auto; margin-right:auto; display:block;
+}
+
+</style>
+</head>
+
+<body>
+ <div>
+    <h1 class="text-center" id="header-content">Say goodbye in style</h1> <br>
+    <h2 class="text-center"> A sweet goodbye for employees leaving Storebrand</h2> <br>
+    <form class="text-center" action="/index" method="post" >
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.employee.label }} <br>
+            {{ form.employee(size=32) }}    
+        </p>
+        <br>
+        <p>
+            {{ form.enddate.label }} <br>
+            {{ form.enddate(size=32) }}
+        </p>
+        <p> {{ form.submit() }}</p>
+    </form>
+</div>  
+
+<br>
+
+<div>
+<img class="logo" src="static/storebrand.svg") alt="Storebrand"> 
+</div>
+<br>
+<br>
+
+
+<footer class = "site-footer" >
+    <div id="footer-content">   
+    <p class="text-center">Made with love to Storebrand by Jacob</p>
+    </div>
+</footer>
+
+</body>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+se på "employee-sider"
+- Vise navn
+- vise nedtelling
+- connecte de to tabeller
+- få vist beskjeder
+
+må jeg lage current_user variabel, så jeg kan hente enddate? Javascript må jo vite hvilken enddate det skal hentes.. 
+
+Bilde 
+- Uploade bilde... 
+- vise bilde
+
+
+format for dato - https://dateutil.readthedocs.io/en/stable/ 

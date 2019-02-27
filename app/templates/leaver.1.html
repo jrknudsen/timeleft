@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script 
+    language = javascript>
+    var countDownDate = new Date("Feb 28, 2019 16:00:00").getTime();
+    
+    var x = setInterval(function() {
+   
+        var now = new Date().getTime();
+    
+        var distance = countDownDate - now;
+    
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+        document.getElementById("daysleft").innerHTML = days + "d " + hours + "t "
+        + minutes + "m " + seconds + "s ";
+    
+        if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("daysleft").innerHTML = "Jacob has left the building";
+        }
+    }, 1000);
+
+    function getEnddate() {
+    fetch('/_getenddate')
+    .then(it => it.json())
+    .then(it => {
+    const enddate =`${it.employee} slutter ${it.enddate}`;
+    document.getElementById("enddate").innerHTML = enddate;
+
+</script>
+
+<!doctype html>
+<div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success text-center">{{ message }}</div>            
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+</div> 
+
+</html>
+
+<style>
+        body {
+        }
+        .content { 
+            max-width:960px;
+            margin: auto;
+            padding: 10px
+        }
+        </style>
+        </head>
+        
+
+<body>
+<div class="content">
+    <h1 class="text-center"> Hvor mange dager har Jacob igjen i Storebrand?</h1>
+        <h2>
+        <p class="text-center bg-danger" id="daysleft"></p>
+    </h2>
+</div>
+ <div>
+    <h1 class="text-center">Skriv en hilsen til Jacob</h1>
+    <form class="text-center" action="/index" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }} <br>
+            {{ form.name(size=32) }}    
+        </p>
+        <p>
+            {{ form.body.label }} <br>
+            {{ form.body(size=32) }}
+        </p>
+        <p> {{ form.submit() }}</p>
+    </form>
+</div>  
+<div class="content">
+<pre><img class ="img-responsive" src="static/jacob.png") class="img-rounded" alt="Jacob" align="middle"> <br>     </pre>
+</div>
+
+{% for post in posts %}
+            <table align="center">
+                <tr>
+                <td style="background-color:lightgray"><p style="font-size:200%"> <b>{{ post.name}}</b> skriver <b>{{ post.body }} </b> </p><br></td>
+                </tr>
+            </table>
+        {% endfor %}
+
+
+</body>
+{% endblock %}
